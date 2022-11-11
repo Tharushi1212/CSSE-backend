@@ -37,5 +37,11 @@ mongoose.connect(
 );
 
 const BlogsRouter = require('./routes/blogsRouter');
+const TimeTablesRouter = require("./routes/TimeTablesRoutes");
+const UserRouter = require("./routes/UserDetailsRoutes");
+const UserAccountRouter = require("./routes/UserAccountRoutes");
 
 app.use('/bus', BlogsRouter);
+app.use("/timetables",TimeTablesRouter);
+app.use("/useraccount",UserAccountRouter);
+app.use("/user",UserRouter);
