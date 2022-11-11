@@ -30,6 +30,20 @@ const getAllBookings = async (req, res) => {
   }
 };
 
+const getAllBookingByEmail = async (req, res) => {
+  console.log('Get Booked by EMail');
+  const { email } = req.body;
+  console.log(email);
+  try {
+    const AllBlogs = await TravelModal.find({ email: email });
+    console.log(AllBlogs);
+
+    res.status(200).json(AllBlogs);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 const removeBookById = async (req, res) => {
   const { id } = req.params;
   const deleteBook = {
@@ -46,4 +60,5 @@ module.exports = {
   bookTickets,
   getAllBookings,
   removeBookById,
+  getAllBookingByEmail,
 };

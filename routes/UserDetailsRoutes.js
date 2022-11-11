@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const auth = require("../middlewares/auth");
-const { check } = require("express-validator");
+const auth = require('../Middleware/auth');
+const { check } = require('express-validator');
 const {
   getUsers,
   getUser,
@@ -12,37 +12,38 @@ const {
   authUser,
   loginUser,
   getUsersByID,
-} = require("../controllers/UserController");
+} = require('../controllers/UserController');
 
-var jwtSecret = "mysecrettoken";
+var jwtSecret = 'mysecrettoken';
 
-router.post("/createUser", createUser);
-router.get("/getAllUsers", getUsers);
-router.get("/getUserById/:id", getUser);
-router.delete("/deleteUser/:id", deleteUser);
-router.patch("/updateUserById/:id", updateUser);
+router.post('/createUser', createUser);
+router.get('/getAllUsers', getUsers);
+router.get('/getUserById/:id', getUser);
+router.delete('/deleteUser/:id', deleteUser);
+router.patch('/updateUserById/:id', updateUser);
 
- router.post("/signup",
-   [
-     check("Fullname", "Name is required").not().isEmpty(),
-     check("email", "Please include a valid email").isEmail(),
-     check(
-       "password",
-       "Please enter password with 6 or more characters"
-     ).isLength({ min: 6 }),
-   ],
-   registerUser
- );
+router.post(
+  '/signup',
+  [
+    check('Fullname', 'Name is required').not().isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check(
+      'password',
+      'Please enter password with 6 or more characters'
+    ).isLength({ min: 6 }),
+  ],
+  registerUser
+);
 
- router.get("/auth", auth, authUser);
+router.get('/auth', auth, authUser);
 
- router.post(
-   "/signin",
-   [
-     check("email", "Please include a valid email").isEmail(),
-     check("password", "Password is required").exists(),
-   ],
-   loginUser
- );
+router.post(
+  '/signin',
+  [
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password is required').exists(),
+  ],
+  loginUser
+);
 
 module.exports = router;
