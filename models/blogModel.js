@@ -18,6 +18,10 @@ const travelSechema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
